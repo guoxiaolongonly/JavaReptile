@@ -112,4 +112,21 @@ public class ArticleInfo {
         this.subTitle = subTitle;
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleInfo{" +
+                "title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", describe='" + describe + '\'' +
+                ", url='" + url + '\'' +
+                ", images=" + images +
+                ", source='" + source + '\'' +
+                ", time='" + time + '\'' +
+                ", content='" + content + '\'' +
+                ", editor='" + editor + '\'' +
+                ", author='" + author + '\'' +
+                ", picLinks='" + picLinks + '\'' +
+                '}';
+    }
 }

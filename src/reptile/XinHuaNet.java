@@ -6,6 +6,7 @@ import bean.xinhua.XinhuaListData;
 import com.google.gson.Gson;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import util.Constant;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class XinHuaNet {
     public ArticleInfo loadArticle(ArticleInfo articleInfo) {
 
         try {
-            Document document = Jsoup.connect(articleInfo.getUrl()).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36").timeout(3000).get();
+            Document document = Jsoup.connect(articleInfo.getUrl()).userAgent(Constant.USER_AGENT).timeout(3000).get();
 //            Element titleInfo = document.getElementsByClass("h-news").get(0);
 //            articleInfo.setTitle(titleInfo.getElementsByClass("h-title").get(0).text());
 //            articleInfo.setTime(titleInfo.getElementsByClass("h-time").get(0).text());
@@ -90,21 +91,4 @@ public class XinHuaNet {
         return articleInfos;
     }
 
-//    /**
-//     * 通过A标签获取文章列表
-//     *
-//     * @param shssAHerfs
-//     * @return
-//     */
-//    private List<ArticleInfo> getArticleListByElements(Elements shssAHerfs) {
-//        List<ArticleInfo> articleInfos = new ArrayList<>();
-//        for (Element element : shssAHerfs) {
-//            if (element.hasText() && element.attr("href").startsWith("http://")) {
-//                ArticleInfo articleInfo = new ArticleInfo(element.text(), "", element.attr("href"));
-//                articleInfos.add(articleInfo);
-//                loadArticle(articleInfo);
-//            }
-//        }
-//        return articleInfos;
-//    }
 }

@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import util.Constant;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,14 +18,11 @@ public class SPZG {
 
 
 
-    public SPZG() {
-    }
-
     public List<ArticleInfo> getArticleInfoListByIndex(int index) {
         List<ArticleInfo> articleInfos = new ArrayList<>();
 
         try {
-            Document document = Jsoup.connect("http://www.shipinzg.cn/F-News/newslist-0-146-aa-p" + index + ".html").userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36").get();
+            Document document = Jsoup.connect(Constant.USER_AGENT).get();
             Element articleListContent = document.getElementsByClass("left_").get(0);
             Elements articleListUL = articleListContent.getElementsByClass("l_l");
             Element articleListEle = new Element("lucky");
@@ -49,7 +47,7 @@ public class SPZG {
     public ArticleInfo loadArticle(ArticleInfo articleInfo) {
 
         try {
-            Document document = Jsoup.connect(articleInfo.getUrl()).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36").timeout(3000).get();
+            Document document = Jsoup.connect(articleInfo.getUrl()).userAgent(Constant.USER_AGENT).timeout(3000).get();
 //            Element titleInfo = document.getElementsByClass("h-news").get(0);
             articleInfo.setTitle(document.getElementsByClass("Title_h1")
                     .get(0).getElementsByTag("h1").get(0).text());
